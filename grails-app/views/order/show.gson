@@ -1,0 +1,24 @@
+import bookstore.Order
+
+model {
+	Order order
+}
+
+json {
+    hal.links(self: order)
+    hal.embedded(customer: order.customer)
+
+	id order.orderId
+    shippingCost order.shippingCost
+    date order.orderPlaced.format('dd/MM/yyyy')
+
+    shippingAddress {
+        street order.shippingAddress.street
+        street2 order.shippingAddress.street2
+        city order.shippingAddress.city
+        state order.shippingAddress.state
+        zip order.shippingAddress.zip
+    }
+
+    products tmpl."/product/product"(order.products)
+}

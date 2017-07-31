@@ -1,0 +1,21 @@
+import bookstore.Customer
+
+model {
+	Iterable<Customer> customerList
+    Integer customerCount
+	Integer max
+	Integer offset
+	String sort
+	String order
+}
+
+json {
+    hal.paginate(Customer, customerCount, offset, max, sort, order)
+    customers tmpl.customer(customerList ?: [])
+    count customerCount
+    max max
+    offset offset
+    sort sort
+    order order
+}
+

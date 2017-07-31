@@ -1,0 +1,7 @@
+import bookstore.Customer
+
+model {
+	Customer customer
+}
+
+json g.render(customer)
